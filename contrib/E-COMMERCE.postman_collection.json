@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "94e6ddb9-52c8-457e-b99f-4cc7d1b2994e",
+		"name": "E-COMMERCE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18974135"
+	},
+	"item": [
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Mohin\",\r\n    \"last_name\": \"Sheikh\",\r\n    \"email\": \"mohin@formics.io\",\r\n    \"address\": \"PUNE MAHARASHTRA 411012\",\r\n    \"country_code\": \"+91\",\r\n    \"mobile_number\": \"8830186746\",\r\n    \"password\": \"user123\",\r\n    \"confirm_pass\": \"user123\",\r\n    \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{ApiVersion}}/user/register",
+							"host": [
+								"{{URL}}{{ApiVersion}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User Verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mohin@formics.io\",\r\n    \"otp\": \"085415\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{ApiVersion}}/user/register/verify",
+							"host": [
+								"{{URL}}{{ApiVersion}}"
+							],
+							"path": [
+								"user",
+								"register",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login 2FA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mohin@formics.io\",\r\n    \"password\": \"user123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{ApiVersion}}/user/login",
+							"host": [
+								"{{URL}}{{ApiVersion}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login 2FA Verify",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.response.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mohin@formics.io\",\r\n    \"otp\": \"044801\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{ApiVersion}}/user/login/verify",
+							"host": [
+								"{{URL}}{{ApiVersion}}"
+							],
+							"path": [
+								"user",
+								"login",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PRODUCT",
+			"item": [
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"TWS Wireless\",\r\n    \"product_detail\": \"Wireless Headphones\",\r\n    \"price\": 2563.36,\r\n    \"images\": \"test.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{ApiVersion}}/product/register",
+							"host": [
+								"{{URL}}{{ApiVersion}}"
+							],
+							"path": [
+								"product",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CART",
+			"item": [
+				{
+					"name": "Add To Cart Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\": \"639f678e6e03e0c74584e59e\",\r\n    \"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{ApiVersion}}/cart/add",
+							"host": [
+								"{{URL}}{{ApiVersion}}"
+							],
+							"path": [
+								"cart",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ORDER",
+			"item": [
+				{
+					"name": "Add Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\": \"639f5aed60e226add13492de\",\r\n    \"total\": 1000.00,\r\n    \"sub_total\": 1500.00,\r\n    \"delivery_charges\": 60,\r\n    \"GST\": 10,\r\n    \"CGST\": 10,\r\n    \"SGST\": 10,\r\n    \"discount\": 100,\r\n    \"shipping_and_handling\": 55\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{ApiVersion}}/order/add",
+							"host": [
+								"{{URL}}{{ApiVersion}}"
+							],
+							"path": [
+								"order",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "e-commerce",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "@joi/date": "^2.1.0",
+    "argon2": "^0.30.2",
+    "body-parser": "^1.20.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "~4.16.1",
+    "express-fileupload": "^1.4.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.8.0",
+    "morgan": "~1.9.1",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20"
+  },
+  "main": "app.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
